@@ -1,0 +1,48 @@
+.authorizations-container {
+  position: relative;
+  width: 90%;
+  height: 150px;
+  margin: 50px auto;
+  background-color: black;
+}
+
+.register-square,
+.login-square,
+.resetPassword-square {
+  position: absolute;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: 1s;
+}
+
+.register-square {
+  background-color: lightblue;
+}
+
+.login-square {
+  background-color: lightgreen;
+}
+
+.resetPassword-square {
+  background-color: lightcoral;
+}
+
+.first {
+  left: 100px;
+  opacity: 0.3;
+}
+
+.second {
+  left: calc(50% - 200px);
+}
+
+.third {
+  left: calc(100% - 500px);
+  opacity: 0.3;
+}
