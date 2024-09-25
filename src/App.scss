@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app-container {
+  position: relative;
+  background: radial-gradient(
+    closest-side,
+    rgb(20, 0, 0) 65%,
+    rgb(5, 0, 0) 100%
+  );
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
