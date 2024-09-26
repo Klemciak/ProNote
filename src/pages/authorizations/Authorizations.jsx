@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Authorizations.scss";
-
+import Login from "./login/Login";
+import Register from "./register/Register";
+import Reset from "./forgotPassword/ForgotPassword";
 const Authorizations = () => {
   const [classes, setClasses] = useState(["first", "second", "third"]);
 
@@ -30,26 +32,21 @@ const Authorizations = () => {
         className={`register-square ${classes[0]}`}
         onClick={() => handleClick(0)}
       >
-        <p>First Square</p>
-        <p>More Text Here</p>
-        <img src="https://via.placeholder.com/50" alt="Placeholder" />
+        <Register />
       </div>
 
       <div
         className={`login-square ${classes[1]}`}
         onClick={() => handleClick(1)}
       >
-        <p>Second Square</p>
-        <p>Additional Content</p>
+        <Login />
       </div>
 
       <div
         className={`resetPassword-square ${classes[2]}`}
         onClick={() => handleClick(2)}
       >
-        <p>Third Square</p>
-        <p>Different Content</p>
-        <p>Even More Text</p>
+        <Reset />
       </div>
     </div>
   );
