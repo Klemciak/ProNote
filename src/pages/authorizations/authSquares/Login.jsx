@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.scss";
+import "./authSquares.scss";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

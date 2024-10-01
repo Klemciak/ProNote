@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Authorizations.scss";
-import Login from "./login/Login";
-import Register from "./register/Register";
-import Reset from "./forgotPassword/ForgotPassword";
+import Login from "./authSquares/Login";
+import Register from "./authSquares/Register";
+import Reset from "./authSquares/ForgotPassword";
 const Authorizations = () => {
   const [classes, setClasses] = useState(["first", "second", "third"]);
 

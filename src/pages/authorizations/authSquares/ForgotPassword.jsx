@@ -1,5 +1,5 @@
 import React from "react";
-import "./ForgotPassword.scss";
+import "./authSquares.scss";
 
 const forgotPassword = () => {
   return (

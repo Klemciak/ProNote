@@ -1,5 +1,5 @@
 @import "../../../variables.scss";
-.login-wrap {
+.wraps {
   height: 100%;
   width: 100%;
   display: flex;
@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.login-wrap h2 {
+.titles {
   font-family: $title-font;
   font-size: 45px;
   position: absolute;
@@ -19,15 +19,15 @@
   color: $font-color;
 }
 
-.login {
+.forms {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
   width: 100%;
-  margin-top: 140px;
+  margin-top: 70px;
 }
-.login input {
+.inputs {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid $dark-red;
@@ -39,7 +39,7 @@
   color: $font-color;
 }
 
-.login .password {
+.inputsEyes {
   position: relative;
   & input {
     padding-right: 40px;
@@ -56,7 +56,7 @@
   }
 }
 
-.login-button {
+.buttons {
   padding: 10px 20px;
   margin-top: 50px;
   margin-bottom: 20px;
@@ -76,9 +76,71 @@
     background-color: rgba(255, 0, 0, 1);
   }
 }
-.login-error {
-  color: goldenrod;
+
+.errors {
+  color: $error-color;
   font-weight: bold;
   font-family: $main-font;
   font-size: 18px;
+}
+.login-wrap,
+.register-wrap,
+.forgotPassword-wrap {
+  @extend .wraps;
+}
+.login-wrap h2,
+.register-wrap h2,
+.forgotPassword-wrap h2 {
+  @extend .titles;
+}
+.forgotPassword-wrap h2 {
+  font-size: 40px;
+}
+
+.forgotPassword,
+.register,
+.login {
+  @extend .forms;
+}
+.login {
+  margin-top: 140px;
+}
+
+.login input,
+.register input,
+.forgotPassword input {
+  @extend .inputs;
+}
+
+.login .password,
+.register .password,
+.register .repeat-password {
+  @extend .inputsEyes;
+}
+
+.login-button,
+.register-button,
+.forgotPassword-button {
+  @extend .buttons;
+}
+.register-button {
+  margin-top: 40px;
+}
+.forgotPassword-button {
+  margin-top: 30px;
+}
+
+.forgotPassword-error,
+.register-error,
+.login-error {
+  @extend .errors;
+}
+
+.forgotPassword p {
+  font-family: $main-font;
+  color: $font-color;
+  font-size: 20px;
+  break-inside: auto;
+  text-align: start;
+  margin-bottom: 20px;
 }
