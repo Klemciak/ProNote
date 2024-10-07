@@ -4,7 +4,11 @@ import "./authSquares.scss";
 const forgotPassword = () => {
   return (
     <div className="forgotPassword-wrap">
-      <h2>Zapomniałeś hasła ?</h2>
+      <h2>
+        Zapomniałeś
+        <br />
+        hasła?
+      </h2>
 
       <form className="forgotPassword">
         <p>
@@ -18,7 +22,11 @@ const forgotPassword = () => {
         <span className="forgotPassword-error">wiadomość/error</span>
       </form>
       <div className="curtain">
-        <h3>Zapomniałeś hasła ?</h3>
+        <h3>
+          Zapomniałeś
+          <br />
+          hasła ?
+        </h3>
       </div>
     </div>
   );
