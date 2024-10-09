@@ -1,0 +1,15 @@
+@import "../../variables.scss";
+.title-wrap {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 25px;
+  font-family: $title-font;
+  color: $font-color;
+  border: $red-border;
+  border-top: none;
+  border-radius: 0px 0px 20px 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 15px 30px;
+}

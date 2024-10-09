@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./authSquares.scss";
 import API_URL from "../../../apiUrl.js";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const Register = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -11,6 +12,7 @@ const Register = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +35,11 @@ const Register = () => {
     }
     setLoading(true);
     try {
+      let recaptchaToken = "";
+      if (executeRecaptcha) {
+        recaptchaToken = await executeRecaptcha("register");
+      }
+      console.log(recaptchaToken);
       const responseEmail = await fetch(
         `${API_URL}/api/auth/check-email/${email}`,
         {
@@ -63,6 +70,7 @@ const Register = () => {
           username,
           email,
           password,
+          recaptchaToken,
         }),
       });
 

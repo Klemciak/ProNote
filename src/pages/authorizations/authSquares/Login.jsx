@@ -17,6 +17,8 @@ const Login = () => {
       return;
     }
 
+    setLoading(true);
+
     try {
       const responseLogin = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
@@ -26,13 +28,28 @@ const Login = () => {
           password,
         }),
       });
-      const dataLogin = await responseLogin.json();
-      console.log(dataLogin);
+
       if (responseLogin.status === 200) {
-        console.log(responseLogin.data);
+        const data = await responseLogin.json();
+        console.log(data); //sprawdzic czy tu bedzie token
+      } else {
+        if (responseLogin.status === 401) {
+          console.error("Błędne dane logowania.");
+        } else if (responseLogin.status === 403) {
+          console.error("Konto nieaktywne.");
+        } else if (responseLogin.status === 404) {
+          console.error("Użytkownik nie został znaleziony.");
+        } else if (error.response.status === 429) {
+          setError("Zbyt wiele prób logowania. Spróbuj ponownie za 15 minut.");
+        } else {
+          console.error("Wystąpił nieznany błąd.");
+        }
       }
-    } catch (error) {}
-    // setLoading(true);
+    } catch (error) {
+      console.error("Wystąpił problem z połączeniem:", error);
+    } finally {
+      setLoading(false);
+    }
   };
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
