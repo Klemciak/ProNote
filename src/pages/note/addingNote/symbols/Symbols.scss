@@ -1,0 +1,35 @@
+@import "../../../../variables.scss";
+.symbol {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+.symbol button {
+  font-family: $main-font;
+  font-weight: bold;
+  font-size: 35px;
+  width: 50px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.symbol-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-100%, -100%);
+  background-color: $black-bg;
+  border: $red-border;
+  border-radius: 20px 20px 0 20px;
+}
+.symbol-options button {
+  color: $font-color;
+  &:hover {
+    color: white;
+  }
+}

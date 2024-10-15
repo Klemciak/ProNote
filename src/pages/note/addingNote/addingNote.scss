@@ -1,0 +1,63 @@
+@import "../../../variables.scss";
+.addingNote-wrap,
+.addingNote,
+.note {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+.addingNote-wrap {
+  width: 70%;
+}
+.addingNote {
+  border: $red-border;
+  border-radius: 20px 0px 20px 0px;
+  background-color: $black-bg;
+}
+.note {
+  padding: 5px 0;
+}
+
+.note textarea {
+  min-width: 500px;
+  max-width: 800px;
+  min-height: 70px;
+  max-height: 120px;
+  background: none;
+  padding: 7px;
+  font-size: 16px;
+  font-family: $main-font;
+  line-height: 20px;
+  border: none;
+  border-left: 2px solid $dark-red;
+  border-right: 2px solid $dark-red;
+  color: $font-color;
+  scrollbar-width: thin;
+  scrollbar-color: red #00000000;
+  &:focus {
+    outline: none;
+  }
+}
+
+.addingNote-button {
+  border: $red-border;
+  border-radius: 0px 20px 0px 20px;
+  padding: 10px 20px;
+  margin-left: 20px;
+  font-family: $title-font;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 17px;
+  background-color: $black-bg;
+  color: $font-color;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background-color: rgb(50, 0, 0);
+    color: white;
+    border-color: red;
+  }
+  &:active {
+    transform: translate(2px, 2px);
+  }
+}

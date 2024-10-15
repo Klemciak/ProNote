@@ -1,0 +1,15 @@
+select option:first-child {
+  display: none; /* Ukrywa pierwszą opcję */
+}
+.sortIcons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+.sortIcons label {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}

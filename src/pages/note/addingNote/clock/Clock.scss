@@ -1,0 +1,21 @@
+@import "../../../../variables.scss";
+.clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  font-family: $main-font;
+  color: $font-color;
+  cursor: default;
+  span:nth-child(1) {
+    margin-bottom: 2px;
+    border-bottom: 1px solid $dark-red;
+    border-radius: 0 0 4px 4px;
+  }
+  span:nth-child(2) {
+    margin-top: 2px;
+    border-bottom: 1px solid $dark-red;
+    border-radius: 0 0 4px 4px;
+  }
+}
