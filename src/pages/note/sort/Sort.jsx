@@ -20,35 +20,36 @@ const Sort = () => {
         </select>
       </div>
       <div className="sortIcons">
-        <label>
-          !
-          <input type="checkbox" />
-        </label>
-        <label>
-          ?
-          <input type="checkbox" />
-        </label>
-        <label>
-          ✔
-          <input type="checkbox" />
-        </label>
-
-        <label>
-          ✘
-          <input type="checkbox" />
-        </label>
-        <label>
-          ❤
-          <input type="checkbox" />
-        </label>
-        <label>
-          ★
-          <input type="checkbox" />
-        </label>
+        <h3>Pokaż tylko:</h3>
+        <div className="sortIcons-boxes">
+          <label>
+            <input type="checkbox" />
+            <span>!</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>?</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>✔</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>✘</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>❤</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>★</span>
+          </label>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Sort;
-// const symbols = ["!", "?", "✔", "✘", "❤", "★"];
