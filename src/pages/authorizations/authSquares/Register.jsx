@@ -39,7 +39,7 @@ const Register = () => {
       if (executeRecaptcha) {
         recaptchaToken = await executeRecaptcha("register");
       }
-      console.log(recaptchaToken);
+
       const responseEmail = await fetch(
         `${API_URL}/api/auth/check-email/${email}`,
         {
@@ -47,25 +47,27 @@ const Register = () => {
         }
       );
       const emailData = await responseEmail.json();
-      if (!emailData.available) {
+      console.log("Email Data:", emailData);
+      if (!emailData.data.available) {
         setError("Ten e-mail jest juz zarejestrowany");
         return;
       }
+
       const responseUsername = await fetch(
-        `${API_URL}/api/auth/check-email/${email}`,
+        `${API_URL}/api/auth/check-username/${username}`,
         {
           method: "GET",
         }
       );
       const usernameData = await responseUsername.json();
-      if (!usernameData.available) {
+      if (!usernameData.data.available) {
         setError("Ta nazwa użytkownika jest zajęta");
         return;
       }
 
       const registrationResponse = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username,
           email,
@@ -75,7 +77,9 @@ const Register = () => {
       });
 
       if (!registrationResponse.ok) {
-        throw new Error("rejestracja nieudana");
+        const errorMessage = await registrationResponse.json(); // Pobierz dodatkowe informacje o błędzie
+        console.error("Registration error:", errorMessage);
+        throw new Error("Rejestracja nieudana: " + errorMessage.message);
       }
     } catch (error) {
       console.error("Registration error:", error);

@@ -1,2 +1,2 @@
-const API_URL = "https://johnny-systems-backend.vercel.app";
+const API_URL = "https://klemciak.vercel.app" || "http://localhost:3000/";
 export default API_URL;
