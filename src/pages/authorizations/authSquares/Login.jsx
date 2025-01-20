@@ -13,7 +13,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,28 +38,35 @@ const Login = () => {
           recaptchaToken,
         }),
       });
-      if (responseLogin.status === 200) {
-        const data = await responseLogin.json();
-        console.log(data); // sprawdzic czy tu bedzie token
-        login(data.token); // Upewnij się, że korzystasz z odpowiedniego tokena
-        console.log(responseLogin.status);
-        // useNavigate('/main') //przekierować po udanym logowaniu
-      } else {
-        // Obsługa błędów
-        if (responseLogin.status === 401) {
-          console.error("Błędne dane logowania.");
-        } else if (responseLogin.status === 403) {
-          console.error("Konto nieaktywne.");
-        } else if (responseLogin.status === 404) {
-          console.error("Użytkownik nie został znaleziony.");
-        } else if (responseLogin.status === 429) {
+
+      if (!responseLogin.ok) {
+        // Sprawdzamy status odpowiedzi
+        const errorData = await responseLogin.json();
+        throw { status: responseLogin.status, message: errorData.message }; // Rzuć wyjątek z odpowiednimi danymi
+      }
+
+      const data = await responseLogin.json();
+      console.log(data.token); // Sprawdź, czy tu będzie token
+      login(data.token); // Upewnij się, że korzystasz z odpowiedniego tokena
+      console.log(responseLogin.status);
+      navigate("/note"); // Przekierować po udanym logowaniu
+    } catch (error) {
+      if (error.status) {
+        // Obsługa błędów z odpowiedzi HTTP
+        if (error.status === 401) {
+          setError("Błędne dane logowania.");
+        } else if (error.status === 403) {
+          setError("Konto nieaktywne.");
+        } else if (error.status === 404) {
+          setError("Użytkownik nie został znaleziony.");
+        } else if (error.status === 429) {
           setError("Zbyt wiele prób logowania. Spróbuj ponownie za 15 minut.");
         } else {
-          console.error("Wystąpił nieznany błąd.");
+          setError("Wystąpił nieznany błąd.");
         }
+      } else {
+        setError("Wystąpił nieznany błąd."); // Obsługa błędów, które nie są związane z odpowiedzią HTTP
       }
-    } catch (error) {
-      // Obsługa błędów, które nie są związane z odpowiedzią HTTP
       console.error("Wystąpił problem z połączeniem:", error);
     } finally {
       setLoading(false);

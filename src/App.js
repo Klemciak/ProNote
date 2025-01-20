@@ -8,6 +8,7 @@ import ActivateAccount from "./pages/activateAcc/Activate.jsx";
 import ResetPassword from "./pages/resetPass/resetPassword.jsx";
 import { AuthProvider } from "./components/AuthContext.jsx";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 function App() {
   return (

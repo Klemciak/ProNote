@@ -12,6 +12,7 @@ const Register = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [registered, setRegistered] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (e) => {
@@ -23,6 +24,7 @@ const Register = () => {
       return;
     } else if (username.length > 20) {
       setError("Nazwa użytkownika jest zbyt długa");
+      return;
     } else if (!emailRegex.test(email)) {
       setError("Proszę wpisać prawidłowy adres e-mail");
       return;
@@ -46,9 +48,10 @@ const Register = () => {
           method: "GET",
         }
       );
+
       const emailData = await responseEmail.json();
       console.log("Email Data:", emailData);
-      if (!emailData.data.available) {
+      if (!emailData.available) {
         setError("Ten e-mail jest juz zarejestrowany");
         return;
       }
@@ -60,7 +63,8 @@ const Register = () => {
         }
       );
       const usernameData = await responseUsername.json();
-      if (!usernameData.data.available) {
+      console.log(usernameData);
+      if (!usernameData.available) {
         setError("Ta nazwa użytkownika jest zajęta");
         return;
       }
@@ -75,15 +79,24 @@ const Register = () => {
           recaptchaToken,
         }),
       });
-
+      setRegistered(true);
       if (!registrationResponse.ok) {
-        const errorMessage = await registrationResponse.json(); // Pobierz dodatkowe informacje o błędzie
-        console.error("Registration error:", errorMessage);
-        throw new Error("Rejestracja nieudana: " + errorMessage.message);
+        let errorMessage = "Nieznany błąd";
+        try {
+          const errorData = await registrationResponse.json();
+          errorMessage = errorData.message || errorMessage;
+        } catch (e) {
+          console.error("Nie udało się sparsować odpowiedzi z błędem:", e);
+        }
+        throw new Error("Rejestracja nieudana: " + errorMessage);
       }
     } catch (error) {
       console.error("Registration error:", error);
-      setError("Problem podczas rejestracji");
+      if (error instanceof TypeError) {
+        setError("Problem z połączeniem sieciowym");
+      } else {
+        setError(error.message || "Problem podczas rejestracji");
+      }
     } finally {
       setLoading(false);
     }
@@ -98,7 +111,10 @@ const Register = () => {
   return (
     <div className="register-wrap">
       <h2>Rejestracja</h2>
-      <form className="register" onSubmit={handleSubmit}>
+      <form
+        className={`register ${registered ? "registered" : ""}`}
+        onSubmit={handleSubmit}
+      >
         <input
           type="email"
           placeholder="Adres e-mail"
@@ -109,7 +125,7 @@ const Register = () => {
         <input
           type="text"
           placeholder="Nazwa użytkownika"
-          maxLength={30}
+          maxLength={20}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           disabled={loading}
@@ -161,6 +177,15 @@ const Register = () => {
         </button>
         <span className="register-error">{error}</span>
       </form>
+      <div className={`reg-successful ${registered ? "registered" : ""}`}>
+        <p className="reg-successful-text">
+          Twoje konto zostało pomyślnie utworzone. Na podany adres e-mail
+          wysłaliśmy wiadomość z potwierdzeniem rejestracji. Proszę sprawdź
+          swoją skrzynkę odbiorczą i kliknij w link aktywacyjny, aby w pełni
+          aktywować swoje konto.
+        </p>
+        <button className="reg-successful-login">Przejdź do logowania</button>
+      </div>
       <div className="curtain">
         <h3>
           Zarejestruj

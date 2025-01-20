@@ -145,3 +145,30 @@
   text-align: start;
   margin-bottom: 20px;
 }
+
+///
+///registration
+///
+.register.registered {
+  display: none;
+}
+.reg-successful {
+  display: none;
+}
+.reg-successful.registered {
+  display: block;
+}
+.reg-successful .reg-successful-text {
+  color: $error-color;
+  font-family: $main-font;
+  font-weight: bolder;
+  font-size: 22px;
+  text-align: justify;
+}
+.reg-successful .reg-successful-login {
+  @extend .buttons;
+}
+
+///
+///registration
+///
