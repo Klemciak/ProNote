@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "./Symbols.scss";
-const Symbols = () => {
-  const [currentSymbol, setCurrentSymbol] = useState("!");
+
+const Symbols = ({ currentSymbol, onChange }) => {
   const [showOptions, setShowOptions] = useState(false);
 
   const symbols = ["!", "?", "✔", "✘", "❤", "★"];
 
   const handleSymbolChange = (symbol) => {
-    setCurrentSymbol(symbol);
+    onChange(symbol); // Przekaż nowy symbol do nadrzędnego komponentu
     setShowOptions(false);
   };
+
   return (
     <div className="symbol">
       <button type="button" onClick={() => setShowOptions(!showOptions)}>

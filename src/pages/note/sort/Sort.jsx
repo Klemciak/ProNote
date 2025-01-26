@@ -1,51 +1,62 @@
 import React, { useState } from "react";
 import "./Sort.scss";
-const Sort = () => {
+
+const Sort = ({ onFilterChange, onSortChange }) => {
+  const [checkedSymbols, setCheckedSymbols] = useState({
+    "!": false,
+    "?": false,
+    "✔": false,
+    "✘": false,
+    "❤": false,
+    "★": false,
+  });
+
   const [selectedOption, setSelectedOption] = useState("");
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckedSymbols((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+    onFilterChange(name, checked); // Przekazujemy zmiany do rodzica
   };
+
+  const handleSortChange = (event) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+    onSortChange(value); // Przekazujemy wybraną opcję sortowania
+  };
+
   return (
     <div className="sort-wrap">
       <div className="sortBy">
         <h3>Sortuj od:</h3>
-        <select id="options" value={selectedOption} onChange={handleChange}>
+        <select id="options" value={selectedOption} onChange={handleSortChange}>
           <option value="" disabled>
             -- Wybierz --
           </option>
-          <option value="option1">Najnowszych</option>
-          <option value="option2">Najstarszych</option>
-          <option value="option3">A do Z</option>
-          <option value="option4">Z do A</option>
+          <option value="najnowsze">Najnowszych</option>
+          <option value="najstarsze">Najstarszych</option>
+          <option value="a-do-z">A do Z</option>
+          <option value="z-do-a">Z do A</option>
         </select>
       </div>
+
       <div className="sortIcons">
         <h3>Pokaż tylko:</h3>
         <div className="sortIcons-boxes">
-          <label>
-            <input type="checkbox" />
-            <span>!</span>
-          </label>
-          <label>
-            <input type="checkbox" />
-            <span>?</span>
-          </label>
-          <label>
-            <input type="checkbox" />
-            <span>✔</span>
-          </label>
-          <label>
-            <input type="checkbox" />
-            <span>✘</span>
-          </label>
-          <label>
-            <input type="checkbox" />
-            <span>❤</span>
-          </label>
-          <label>
-            <input type="checkbox" />
-            <span>★</span>
-          </label>
+          {Object.keys(checkedSymbols).map((symbol) => (
+            <label key={symbol}>
+              <input
+                type="checkbox"
+                name={symbol}
+                checked={checkedSymbols[symbol]}
+                onChange={handleCheckboxChange}
+              />
+              <span>{symbol}</span>
+            </label>
+          ))}
         </div>
       </div>
     </div>

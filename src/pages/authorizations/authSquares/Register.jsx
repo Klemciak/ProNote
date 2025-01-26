@@ -3,7 +3,7 @@ import "./authSquares.scss";
 import API_URL from "../../../apiUrl.js";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-const Register = () => {
+const Register = ({ moveToLoginSquare }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isRepeatPasswordVisible, setIsRepeatPasswordVisible] = useState(false);
   const [email, setEmail] = useState("");
@@ -14,7 +14,9 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [registered, setRegistered] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
-
+  const handleMoveToLogin = () => {
+    window.location.reload();
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -184,7 +186,9 @@ const Register = () => {
           swoją skrzynkę odbiorczą i kliknij w link aktywacyjny, aby w pełni
           aktywować swoje konto.
         </p>
-        <button className="reg-successful-login">Przejdź do logowania</button>
+        <button className="reg-successful-login" onClick={handleMoveToLogin}>
+          Przejdź do logowania
+        </button>
       </div>
       <div className="curtain">
         <h3>
