@@ -19,8 +19,15 @@ function App() {
           <Title />
           <Routes>
             <Route path="/" element={<Authorizations />} />
-            <Route path="/note" element={<Note />} />
-            <Route path="/activateAcc" element={<ActivateAccount />} />
+            <Route
+              path="/note"
+              element={
+                <PrivateRoute>
+                  <Note />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/activateAcc/:token" element={<ActivateAccount />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
           </Routes>
         </div>

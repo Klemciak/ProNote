@@ -4,13 +4,15 @@
   box-sizing: border-box;
 }
 .app-container {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
   position: relative;
   background: radial-gradient(
     closest-side,
     rgb(35, 0, 0) 65%,
     rgb(5, 0, 0) 100%
   );
-  min-height: 100vh;
   overflow: hidden;
   z-index: 1;
 }

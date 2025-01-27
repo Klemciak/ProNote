@@ -37,6 +37,7 @@ const ForgotPassword = () => {
       console.error("Error sending reset password email", error);
     } finally {
       setLoading(false);
+      setEmail("");
     }
   };
   return (

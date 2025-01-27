@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./MyNote.scss";
 import API_URL from "../../../apiUrl";
-
+import NoteEdit from "./NoteEdit/NoteEdit";
 const MyNote = ({ notes, filters, sortOption, refreshNotes }) => {
   const [showDropdown, setShowDropdown] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -25,9 +25,9 @@ const MyNote = ({ notes, filters, sortOption, refreshNotes }) => {
       // bo API już zwraca je w tej kolejności
       sorted = filteredNotes.slice().reverse();
     } else if (sortOption === "a-do-z") {
-      sorted.sort((a, b) => b.content.localeCompare(a.content)); // Z do A
+      sorted.sort((a, b) => b.content.localeCompare(a.content)); // A do Z
     } else if (sortOption === "z-do-a") {
-      sorted.sort((a, b) => a.content.localeCompare(b.content)); // A do Z
+      sorted.sort((a, b) => a.content.localeCompare(b.content)); // Z do A
     }
 
     setSortedNotes(sorted);
@@ -74,7 +74,33 @@ const MyNote = ({ notes, filters, sortOption, refreshNotes }) => {
       alert("Wystąpił problem podczas usuwania notatki.");
     }
   };
+  const saveEditedNote = async (updatedNote) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Zaloguj się, aby edytować notatkę.");
+      return;
+    }
 
+    try {
+      const response = await fetch(`${API_URL}/api/notes/${updatedNote.id}`, {
+        method: "PUT", // PUT, aby edytować istniejącą notatkę
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedNote),
+      });
+
+      if (!response.ok) {
+        throw new Error("Błąd podczas edycji notatki.");
+      }
+
+      refreshNotes(); // Odświeżenie listy notatek po edycji
+    } catch (error) {
+      console.error("Błąd:", error);
+      alert("Wystąpił problem podczas edytowania notatki.");
+    }
+  };
   return (
     <div className="myNote-wrap">
       {sortedNotes
@@ -83,7 +109,11 @@ const MyNote = ({ notes, filters, sortOption, refreshNotes }) => {
         .map((note, index) => (
           <div key={index} className="note-item">
             <h3>{note.symbol}</h3>
-            <p>{note.content}</p>
+            <div className="note-item-text">
+              <h2>{note.title}</h2>
+              <p>{note.content}</p>
+            </div>
+
             <div className="note-info">
               <span className="note-date">{note.date}</span>
               <span className="note-time">{note.time}</span>
@@ -105,16 +135,11 @@ const MyNote = ({ notes, filters, sortOption, refreshNotes }) => {
         ))}
 
       {showEditModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h4>Edytuj notatkę:</h4>
-            <textarea defaultValue={selectedNote.content}></textarea>
-            <div className="modal-actions">
-              <button>Zapisz</button>
-              <button onClick={closeEditModal}>Anuluj</button>
-            </div>
-          </div>
-        </div>
+        <NoteEdit
+          selectedNote={selectedNote}
+          closeEditModal={closeEditModal}
+          saveEditedNote={saveEditedNote}
+        />
       )}
     </div>
   );

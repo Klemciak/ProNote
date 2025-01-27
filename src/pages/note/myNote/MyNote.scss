@@ -23,7 +23,7 @@
   width: 100%;
   padding: 10px 20px;
   margin-bottom: 20px;
-  padding-right: 10%;
+
   font-size: 20px;
   border: $red-border;
   border-width: 2px;
@@ -31,8 +31,13 @@
   background-color: $black-bg;
   color: $font-color;
   font-family: $main-font;
-  & h3 {
-    width: 5%;
+  h2 {
+    font-size: 27px;
+    text-align: center;
+    font-family: $title-font;
+  }
+  h3 {
+    width: 60px;
     text-align: center;
     font-size: 40px;
     border: $red-border;
@@ -40,9 +45,13 @@
     border-radius: 10px;
     background-color: $black-bg;
   }
-  & p {
-    width: 80%;
-    font-size: 17px;
+  .note-item-text {
+    width: 100%;
+    margin: 0 20px;
+    & p {
+      width: 80%;
+      font-size: 17px;
+    }
   }
 }
 .note-info {
@@ -50,7 +59,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  margin: 0 20px;
   padding: 5px 10px;
   font-size: 15px;
   border: $red-border;
@@ -60,10 +69,6 @@
 }
 
 .options-button {
-  position: absolute;
-  right: 30px;
-  bottom: 50%;
-  transform: translateY(50%);
   padding: 0px 5px;
   border: $red-border;
   border-width: 2px;

@@ -4,11 +4,11 @@ select option:first-child {
 }
 
 .sort-wrap {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
+  position: fixed;
+  left: 10px;
+  top: 50%;
   width: 200px;
+  transform: translateY(-50%);
 }
 .sortBy {
   padding: 20px 10px;

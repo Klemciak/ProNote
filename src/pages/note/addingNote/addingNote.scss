@@ -10,19 +10,21 @@
   width: 70%;
 }
 .addingNote {
+  width: 100%;
   border: $red-border;
   border-radius: 20px 0px 20px 0px;
   background-color: $black-bg;
 }
 .note {
   padding: 5px 0;
+  width: 100%;
 }
 
 .note textarea {
-  min-width: 500px;
-  max-width: 800px;
-  min-height: 70px;
-  max-height: 120px;
+  width: 100%;
+  min-height: 100px;
+  max-height: 285px;
+  resize: vertical;
   background: none;
   padding: 7px;
   font-size: 16px;
