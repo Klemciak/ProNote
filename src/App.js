@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.scss";
 import Authorizations from "./pages/authorizations/Authorizations.jsx";
 import GrainBackground from "./components/grainBackground/grainBackground.jsx";
@@ -28,7 +28,8 @@ function App() {
               }
             />
             <Route path="/activateAcc/:token" element={<ActivateAccount />} />
-            <Route path="/resetPassword" element={<ResetPassword />} />
+            <Route path="/resetPassword/:token" element={<ResetPassword />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
       </GoogleReCaptchaProvider>

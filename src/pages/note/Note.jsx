@@ -4,6 +4,7 @@ import AddingNote from "./addingNote/addingNote";
 import Sort from "./sort/Sort";
 import MyNote from "./myNote/MyNote";
 import API_URL from "../../apiUrl";
+import Nick from "./nick/Nick";
 
 const Note = () => {
   const [notes, setNotes] = useState([]);
@@ -33,6 +34,7 @@ const Note = () => {
 
       const data = await response.json();
       setNotes(data);
+      console.log(data);
     } catch (error) {
       console.error("Błąd:", error);
     }
@@ -58,6 +60,7 @@ const Note = () => {
 
   return (
     <div className="notePage-wrap">
+      <Nick />
       <AddingNote refreshNotes={fetchNotes} />
       <div className="main-wrap">
         <Sort

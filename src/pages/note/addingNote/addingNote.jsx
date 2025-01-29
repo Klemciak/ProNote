@@ -17,6 +17,11 @@ const AddingNote = ({ refreshNotes }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (content.trim().length === 0) {
+      alert("Treść notatki nie może być pusta!");
+      return;
+    }
+
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Zaloguj się, aby dodać notatkę.");

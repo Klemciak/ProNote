@@ -13,7 +13,11 @@ const Symbols = ({ currentSymbol, onChange }) => {
 
   return (
     <div className="symbol">
-      <button type="button" onClick={() => setShowOptions(!showOptions)}>
+      <button
+        className="main-button"
+        type="button"
+        onClick={() => setShowOptions(!showOptions)}
+      >
         {currentSymbol}
       </button>
       {showOptions && (

@@ -1,0 +1,16 @@
+@import "../../../variables.scss";
+.nick {
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  font-family: $title-font;
+  color: $font-color;
+  border: $red-border;
+  border-top: none;
+  border-right: none;
+  border-radius: 0px 0px 0px 20px;
+  background-color: $black-bg;
+  border-width: 1px;
+  padding: 5px 8px;
+}

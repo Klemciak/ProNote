@@ -16,6 +16,9 @@ const ResetPassword = () => {
     if (!newPassword) {
       setError("Wprowadź nowe hasło.");
       return;
+    } else if (!newPassword || newPassword.length < 6) {
+      setError("Hasło musi mieć co najmniej 6 znaków.");
+      return;
     }
 
     setLoading(true);
@@ -36,7 +39,8 @@ const ResetPassword = () => {
         setTimeout(() => navigate("/"), 3000);
       } else {
         const errorData = await response.json();
-        setError(errorData.message || "Nie udało się zresetować hasła");
+        console.log(errorData);
+        setError("Nie udało się zresetować hasła");
       }
     } catch (error) {
       setError("Nie udało się zresetować hasła");
