@@ -8,6 +8,7 @@
 }
 .addingNote-wrap {
   width: 70%;
+  z-index: 10;
 }
 .addingNote {
   width: 100%;
@@ -43,7 +44,7 @@
 
 .addingNote-button {
   border: $red-border;
-  border-radius: 0px 20px 0px 20px;
+  border-radius: 7px 0px 7px 0px;
   padding: 10px 20px;
   margin-left: 20px;
   font-family: $title-font;
@@ -61,5 +62,67 @@
   }
   &:active {
     transform: translate(2px, 2px);
+  }
+}
+@media (max-width: 1300px), (max-height: 700px) {
+  .addingNote-wrap {
+    width: 80%;
+  }
+  .note textarea {
+    max-height: 175px;
+  }
+}
+@media (max-width: 970px), (max-height: 550px) {
+  .addingNote-wrap {
+    width: 100%;
+  }
+  .addingNote {
+    border-width: 2px;
+  }
+  .note {
+    padding: 2px 0;
+  }
+  .note textarea {
+    min-height: 50px;
+    max-height: 150px;
+    padding: 5px;
+    font-size: 15px;
+    line-height: 17px;
+    border-width: 1px;
+  }
+  .addingNote-button {
+    margin-left: 10px;
+    font-size: 14px;
+    border-width: 2px;
+  }
+}
+@media (max-width: 550px), (max-height: 300px) {
+  .addingNote {
+    border-radius: 7px 0px 7px 0px;
+  }
+  .note textarea {
+    min-height: 35px;
+    max-height: 70px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .addingNote-button {
+    margin-left: 4px;
+    font-size: 9px;
+    padding: 2px 10px;
+    border-radius: 0px 7px 0px 7px;
+  }
+}
+@media (max-width: 400px) {
+  .note textarea {
+    min-height: 50px;
+    max-height: 170px;
+    border-right: none;
+  }
+  .addingNote-button {
+    margin-left: 4px;
+    font-size: 8px;
+    padding: 2px 4px;
+    border-radius: 0px 7px 0px 7px;
   }
 }

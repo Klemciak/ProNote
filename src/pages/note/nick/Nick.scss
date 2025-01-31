@@ -14,3 +14,25 @@
   border-width: 1px;
   padding: 5px 8px;
 }
+@media (max-width: 970px), (max-height: 550px) {
+  .nick {
+    font-size: 9px;
+  }
+}
+@media (max-width: 700px), (max-height: 400px) {
+  .nick {
+    font-size: 7px;
+    border-radius: 0px 0px 0px 5px;
+    padding: 2px;
+  }
+}
+@media (max-width: 550px), (max-height: 300px) {
+  .nick {
+    font-size: 5px;
+  }
+}
+@media (max-width: 400px) {
+  .nick {
+    display: none;
+  }
+}

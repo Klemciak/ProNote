@@ -51,6 +51,7 @@ select option:first-child {
     font-weight: bold;
   }
 }
+
 .sortIcons {
   padding: 20px 10px;
   margin-top: 20px;
@@ -115,4 +116,145 @@ input[type="checkbox"]::before {
 
 input[type="checkbox"]:checked::before {
   transform: scale(1);
+}
+@media (max-width: 970px), (max-height: 550px) {
+  .sort-wrap {
+    top: 0;
+    left: 0;
+    transform: translateY(0);
+    width: auto;
+  }
+  .sortBy {
+    padding: 5px 10px;
+    border-radius: 0 0 20px 0px;
+    border-top: none;
+    border-left: none;
+    & h3 {
+      font-size: 15px;
+    }
+  }
+  .sortIcons {
+    padding: 5px;
+    margin-top: 35px;
+    border-radius: 0 20px 20px 0;
+    border-left: none;
+    width: 80px;
+    & h3 {
+      font-size: 15px;
+      padding-bottom: 8px;
+    }
+  }
+  .sortIcons-boxes {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .sortIcons label {
+    font-size: 22px;
+  }
+}
+@media (max-width: 700px), (max-height: 400px) {
+  .sortBy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width: 2px;
+    & h3 {
+      font-size: 11px;
+      white-space: nowrap;
+      padding-bottom: 0;
+      margin-right: 5px;
+    }
+  }
+  #options {
+    font-size: 14px;
+  }
+  .sortIcons {
+    padding: 2px;
+    margin-top: 10px;
+    border-radius: 0 7px 7px 0;
+    border-width: 2px;
+    width: 60px;
+    & h3 {
+      font-size: 11px;
+    }
+  }
+  .sortIcons-boxes {
+    gap: 6px;
+  }
+  .sortIcons label {
+    font-size: 18px;
+  }
+  input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+  }
+}
+@media (max-width: 550px), (max-height: 300px) {
+  .sortBy {
+    padding: 3px 5px;
+    border-radius: 0 0 7px 0px;
+    & h3 {
+      font-size: 9px;
+    }
+  }
+  #options {
+    font-size: 11px;
+  }
+  .sortIcons {
+    padding: 2px;
+    margin-top: 5px;
+    width: 50px;
+    & h3 {
+      font-size: 9px;
+    }
+  }
+  .sortIcons-boxes {
+    gap: 5px;
+  }
+  .sortIcons label {
+    font-size: 14px;
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+  input[type="checkbox"] {
+    border-width: 1px;
+    border-radius: 2px;
+  }
+}
+@media (max-width: 400px) {
+  .sortBy {
+    flex-direction: column;
+
+    & h3 {
+      margin-bottom: 2px;
+      margin-right: 0;
+    }
+  }
+  #options {
+    font-size: 9px;
+  }
+  .sortIcons {
+    margin-top: 10px;
+    width: 30px;
+    & h3 {
+      font-size: 7px;
+    }
+  }
+  .sortIcons-boxes {
+    gap: 10px;
+  }
+  .sortIcons label {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+  }
 }

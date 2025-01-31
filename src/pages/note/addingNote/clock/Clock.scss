@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   padding: 0 20px;
+  font-size: 16px;
   font-family: $main-font;
   color: $font-color;
   cursor: default;
@@ -17,5 +18,22 @@
     margin-top: 2px;
     border-bottom: 1px solid $dark-red;
     border-radius: 0 0 4px 4px;
+  }
+}
+@media (max-width: 970px), (max-height: 550px) {
+  .clock {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 550px), (max-height: 300px) {
+  .clock {
+    padding: 3px;
+    font-size: 9px;
+  }
+}
+@media (max-width: 400px) {
+  .clock {
+    display: none;
   }
 }

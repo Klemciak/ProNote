@@ -25,7 +25,7 @@ const GrainBackground = () => {
         </feTurbulence>
       </filter>
 
-      <rect width="1000%" height="1000%" filter="url(#noiseFilter)" />
+      <rect width="10000%" height="10000%" filter="url(#noiseFilter)" />
     </svg>
   );
 };

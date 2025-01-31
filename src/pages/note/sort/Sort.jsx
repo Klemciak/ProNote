@@ -44,7 +44,7 @@ const Sort = ({ onFilterChange, onSortChange }) => {
       </div>
 
       <div className="sortIcons">
-        <h3>Pokaż tylko:</h3>
+        <h3>Pokaż:</h3>
         <div className="sortIcons-boxes">
           {Object.keys(checkedSymbols).map((symbol) => (
             <label key={symbol}>

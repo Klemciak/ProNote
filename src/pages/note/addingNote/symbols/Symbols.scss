@@ -37,3 +37,21 @@
     color: white;
   }
 }
+@media (max-width: 970px), (max-height: 550px) {
+  .symbol-options {
+    transform: translate(25%, 40%);
+    background-color: rgba($black-bg, 0.9);
+    border-radius: 0 20px 20px 20px;
+  }
+}
+@media (max-width: 550px), (max-height: 300px) {
+  .symbol button {
+    font-size: 25px;
+    width: 30px;
+  }
+  .symbol-options {
+    transform: translate(25%, 40%);
+    background-color: rgba($black-bg, 0.9);
+    border-radius: 0 7px 7px 7px;
+  }
+}
