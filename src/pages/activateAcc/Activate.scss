@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  text-align: center;
 }
 .activate {
   display: flex;
@@ -48,5 +49,42 @@
   }
   &:active {
     transform: translate(2px, 2px);
+  }
+}
+@media (max-width: 970px), (max-height: 550px) {
+  .activate {
+    padding: 15px 30px;
+  }
+  .activate h2 {
+    font-size: 35px;
+  }
+  .activate p {
+    font-size: 22px;
+    margin: 12px 0;
+  }
+  .activate button {
+    border-radius: 0px 15px 0px 15px;
+    padding: 5px 15px;
+
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 550px), (max-height: 300px) {
+  .activate {
+    padding: 10px 15px;
+  }
+  .activate h2 {
+    font-size: 25px;
+  }
+  .activate p {
+    font-size: 15px;
+    margin: 12px 0;
+  }
+  .activate button {
+    border-radius: 0px 7px 0px 7px;
+    padding: 5px 15px;
+
+    font-size: 19px;
   }
 }
