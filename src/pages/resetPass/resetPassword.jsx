@@ -5,7 +5,7 @@ import "./resetPassword.scss";
 
 const ResetPassword = () => {
   const { token } = useParams();
-  const [newPassword, setNewPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -13,10 +13,10 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!newPassword) {
+    if (!password) {
       setError("Wprowadź nowe hasło.");
       return;
-    } else if (!newPassword || newPassword.length < 6) {
+    } else if (!password || password.length < 6) {
       setError("Hasło musi mieć co najmniej 6 znaków.");
       return;
     }
@@ -30,7 +30,7 @@ const ResetPassword = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ newPassword }),
+          body: JSON.stringify({ password }),
         }
       );
 
@@ -57,8 +57,8 @@ const ResetPassword = () => {
           <input
             type="password"
             placeholder="Podaj nowe hasło"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
           />
           <button type="submit" disabled={loading}>

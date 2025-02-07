@@ -27,8 +27,8 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/activateAcc/:token" element={<ActivateAccount />} />
-            <Route path="/resetPassword/:token" element={<ResetPassword />} />
+            <Route path="/activate/:token" element={<ActivateAccount />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

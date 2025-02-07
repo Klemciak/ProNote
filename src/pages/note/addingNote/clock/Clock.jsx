@@ -9,7 +9,13 @@ const Clock = ({ onTimeChange, onDateChange }) => {
       const now = new Date();
       setCurrentTime(now);
       onTimeChange(now.toLocaleTimeString());
-      onDateChange(now.toLocaleDateString());
+      onDateChange(
+        now.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        })
+      );
     }, 1000);
 
     return () => clearInterval(timerId);
