@@ -18,14 +18,14 @@ const GrainBackground = () => {
           <animate
             attributeName="seed"
             from="0"
-            to="100"
+            to="50"
             dur="7s"
             repeatCount="indefinite"
           />
         </feTurbulence>
       </filter>
 
-      <rect width="10000%" height="10000%" filter="url(#noiseFilter)" />
+      <rect width="1000%" height="1000%" filter="url(#noiseFilter)" />
     </svg>
   );
 };
